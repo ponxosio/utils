@@ -36,7 +36,10 @@ HEADERS += \
     utils/AutoEnumerate.h \
     utils/sequence.h \
     utils/utils.h \
-    utils/utils_global.h
+    utils/utils_global.h \
+    graph/Edge.h \
+    graph/Graph.h \
+    graph/Node.h
 
 SOURCES += \
     utils/AutoEnumerate.cpp \
@@ -50,4 +53,6 @@ debug {
 !debug {
     QMAKE_POST_LINK=X:\utils\utils\setDLL.bat $$shell_path($$OUT_PWD/release) release
 }
+
+INCLUDEPATH += X:\libraries
 
