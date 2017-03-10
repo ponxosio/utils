@@ -39,7 +39,8 @@ HEADERS += \
     utils/utils_global.h \
     graph/Edge.h \
     graph/Graph.h \
-    graph/Node.h
+    graph/Node.h \
+    utils/units.h
 
 SOURCES += \
     utils/AutoEnumerate.cpp \
@@ -54,5 +55,5 @@ debug {
     QMAKE_POST_LINK=X:\utils\utils\setDLL.bat $$shell_path($$OUT_PWD/release) release
 }
 
-INCLUDEPATH += X:\libraries
+INCLUDEPATH += X:\libraries\cereal-1.2.2\include
 
