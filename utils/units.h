@@ -4,16 +4,12 @@
 #include <ostream>
 #include <sstream>
 #include <string>
-
-//cereal
-#include <cereal/cereal.hpp>
-
 namespace units
 {
 
 typedef double NT;   // Number Type
 
-template<int U1, int U2, int U3, int U4>
+template<int U1, int U2, int U3, int U4, int U5>
 class Units
 {
     public:
@@ -29,7 +25,7 @@ class Units
         static std::string dim(void)
         {
             std::stringstream s;
-            s << "<" << U1 << ","<< U2 << ","<< U3 << ","<< U4 << ">";
+            s << "<" << U1 << ","<< U2 << ","<< U3 << ","<< U4 << ","<< U5 << ">";
             return s.str();
         }
 
@@ -70,190 +66,185 @@ class Units
             return *this;
         }
 
-        //SERIALIZATIoN
-        template<class Archive>
-        void serialize(Archive & ar) {
-            ar(value);
-        }
     private:
         NT value;
 };
 
 
 // Addition
-template <int U1, int U2, int U3, int U4>
-const Units<U1, U2, U3, U4> operator+(const Units<U1, U2, U3, U4> & lhs, const Units<U1, U2, U3, U4> & rhs)
+template <int U1, int U2, int U3, int U4, int U5>
+const Units<U1, U2, U3, U4, U5> operator+(const Units<U1, U2, U3, U4, U5> & lhs, const Units<U1, U2, U3, U4, U5> & rhs)
 {
-    return Units<U1, U2, U3, U4>(lhs() + rhs());
+    return Units<U1, U2, U3, U4, U5>(lhs() + rhs());
 }
 
 
 // Subtraction
-template <int U1, int U2, int U3, int U4>
-const Units<U1, U2, U3, U4> operator-(const Units<U1, U2, U3, U4> & lhs, const Units<U1, U2, U3, U4> & rhs)
+template <int U1, int U2, int U3, int U4, int U5>
+const Units<U1, U2, U3, U4, U5> operator-(const Units<U1, U2, U3, U4, U5> & lhs, const Units<U1, U2, U3, U4, U5> & rhs)
 {
-    return Units<U1, U2, U3, U4>(lhs() - rhs());
+    return Units<U1, U2, U3, U4, U5>(lhs() - rhs());
 }
 
 
 // Multiplication
-template <int U1, int U2, int U3, int U4>
-const Units<U1, U2, U3, U4> operator*(const NT & lhs, const Units<U1, U2, U3, U4> & rhs)
+template <int U1, int U2, int U3, int U4, int U5>
+const Units<U1, U2, U3, U4, U5> operator*(const NT & lhs, const Units<U1, U2, U3, U4, U5> & rhs)
 {
-    return Units<U1, U2, U3, U4>(lhs*rhs());
+    return Units<U1, U2, U3, U4, U5>(lhs*rhs());
 }
 
-template <int U1, int U2, int U3, int U4>
-const Units<U1, U2, U3, U4> operator*(const Units<U1, U2, U3, U4> & lhs, const NT & rhs)
+template <int U1, int U2, int U3, int U4, int U5>
+const Units<U1, U2, U3, U4, U5> operator*(const Units<U1, U2, U3, U4, U5> & lhs, const NT & rhs)
 {
     return rhs*lhs;
 }
 
-template <int U1a, int U2a, int U3a, int U4a, int U1b, int U2b, int U3b, int U4b>
-const Units<U1a+U1b, U2a+U2b, U3a+U3b, U4a+U4b> operator*(const Units<U1a, U2a, U3a, U4a> & lhs, const Units<U1b, U2b, U3b, U4b> & rhs)
+template <int U1a, int U2a, int U3a, int U4a, int U5a, int U1b, int U2b, int U3b, int U4b, int U5b>
+const Units<U1a+U1b, U2a+U2b, U3a+U3b, U4a+U4b, U5a+U5b> operator*(const Units<U1a, U2a, U3a, U4a, U5a> & lhs, const Units<U1b, U2b, U3b, U4b, U5b> & rhs)
 {
-    return Units<U1a+U1b, U2a+U2b, U3a+U3b, U4a+U4b>(lhs()*rhs());
+    return Units<U1a+U1b, U2a+U2b, U3a+U3b, U4a+U4b, U5a+U5b>(lhs()*rhs());
 }
 
 
 // Division
-template <int U1, int U2, int U3, int U4>
-const Units<U1, U2, U3, U4> operator/(const Units<U1, U2, U3, U4> & lhs, const NT & rhs)
+template <int U1, int U2, int U3, int U4, int U5>
+const Units<U1, U2, U3, U4, U5> operator/(const Units<U1, U2, U3, U4, U5> & lhs, const NT & rhs)
 {
-    return Units<U1, U2, U3, U4>(lhs()/rhs);
+    return Units<U1, U2, U3, U4, U5>(lhs()/rhs);
 }
 
-template <int U1, int U2, int U3, int U4>
-const Units<-U1, -U2, -U3, -U4> operator/(const NT & lhs, const Units<U1, U2, U3, U4> & rhs)
+template <int U1, int U2, int U3, int U4, int U5>
+const Units<-U1, -U2, -U3, -U4, -U5> operator/(const NT & lhs, const Units<U1, U2, U3, U4, U5> & rhs)
 {
-    return Units<-U1, -U2, -U3, -U4>(lhs/rhs());
+    return Units<-U1, -U2, -U3, -U4, -U5>(lhs/rhs());
 }
 
-template <int U1a, int U2a, int U3a, int U4a, int U1b, int U2b, int U3b, int U4b>
-const Units<U1a-U1b, U2a-U2b, U3a-U3b, U4a-U4b> operator/(const Units<U1a, U2a, U3a, U4a> & lhs, const Units<U1b, U2b, U3b, U4b> & rhs)
+template <int U1a, int U2a, int U3a, int U4a, int U5a, int U1b, int U2b, int U3b, int U4b, int U5b>
+const Units<U1a-U1b, U2a-U2b, U3a-U3b, U4a-U4b, U5a-U5b> operator/(const Units<U1a, U2a, U3a, U4a, U5a> & lhs, const Units<U1b, U2b, U3b, U4b, U5b> & rhs)
 {
-    return Units<U1a-U1b, U2a-U2b, U3a-U3b, U4a-U4b>(lhs()/rhs());
+    return Units<U1a-U1b, U2a-U2b, U3a-U3b, U4a-U4b, U5a-U5b>(lhs()/rhs());
 }
 
 
 // Comparisons
-template <int U1, int U2, int U3, int U4>
-bool operator==(const Units<U1, U2, U3, U4> & lhs, const Units<U1, U2, U3, U4> & rhs)
+template <int U1, int U2, int U3, int U4, int U5>
+bool operator==(const Units<U1, U2, U3, U4, U5> & lhs, const Units<U1, U2, U3, U4, U5> & rhs)
 {
     return (lhs() == rhs());
 }
 
-template <int U1, int U2, int U3, int U4>
-bool operator==(const Units<U1, U2, U3, U4> & lhs, const NT & rhs)
+template <int U1, int U2, int U3, int U4, int U5>
+bool operator==(const Units<U1, U2, U3, U4, U5> & lhs, const NT & rhs)
 {
     return (lhs() == rhs);
 }
 
-template <int U1, int U2, int U3, int U4>
-bool operator==(const NT & lhs, const Units<U1, U2, U3, U4> & rhs)
+template <int U1, int U2, int U3, int U4, int U5>
+bool operator==(const NT & lhs, const Units<U1, U2, U3, U4, U5> & rhs)
 {
     return (lhs == rhs());
 }
 
-template <int U1, int U2, int U3, int U4>
-bool operator!=(const Units<U1, U2, U3, U4> & lhs, const Units<U1, U2, U3, U4> & rhs)
+template <int U1, int U2, int U3, int U4, int U5>
+bool operator!=(const Units<U1, U2, U3, U4, U5> & lhs, const Units<U1, U2, U3, U4, U5> & rhs)
 {
     return not (lhs() == rhs());
 }
 
-template <int U1, int U2, int U3, int U4>
-bool operator!=(const Units<U1, U2, U3, U4> & lhs, const NT & rhs)
+template <int U1, int U2, int U3, int U4, int U5>
+bool operator!=(const Units<U1, U2, U3, U4, U5> & lhs, const NT & rhs)
 {
     return not (lhs() == rhs);
 }
 
-template <int U1, int U2, int U3, int U4>
-bool operator!=(const NT & lhs, const Units<U1, U2, U3, U4> & rhs)
+template <int U1, int U2, int U3, int U4, int U5>
+bool operator!=(const NT & lhs, const Units<U1, U2, U3, U4, U5> & rhs)
 {
     return not (lhs == rhs());
 }
 
 
 // Ordering
-template <int U1, int U2, int U3, int U4>
-bool operator<=(const Units<U1, U2, U3, U4> & lhs, const Units<U1, U2, U3, U4> & rhs)
+template <int U1, int U2, int U3, int U4, int U5>
+bool operator<=(const Units<U1, U2, U3, U4, U5> & lhs, const Units<U1, U2, U3, U4, U5> & rhs)
 {
     return lhs() <= rhs();
 }
 
-template <int U1, int U2, int U3, int U4>
-bool operator<=(const Units<U1, U2, U3, U4> & lhs, const NT & rhs)
+template <int U1, int U2, int U3, int U4, int U5>
+bool operator<=(const Units<U1, U2, U3, U4, U5> & lhs, const NT & rhs)
 {
     return (lhs() <= rhs);
 }
 
-template <int U1, int U2, int U3, int U4>
-bool operator<=(const NT & lhs, const Units<U1, U2, U3, U4> & rhs)
+template <int U1, int U2, int U3, int U4, int U5>
+bool operator<=(const NT & lhs, const Units<U1, U2, U3, U4, U5> & rhs)
 {
     return (lhs <= rhs());
 }
 
 
-template <int U1, int U2, int U3, int U4>
-bool operator>=(const Units<U1, U2, U3, U4> & lhs, const Units<U1, U2, U3, U4> & rhs)
+template <int U1, int U2, int U3, int U4, int U5>
+bool operator>=(const Units<U1, U2, U3, U4, U5> & lhs, const Units<U1, U2, U3, U4, U5> & rhs)
 {
     return lhs() >= rhs();
 }
 
-template <int U1, int U2, int U3, int U4>
-bool operator>=(const Units<U1, U2, U3, U4> & lhs, const NT & rhs)
+template <int U1, int U2, int U3, int U4, int U5>
+bool operator>=(const Units<U1, U2, U3, U4, U5> & lhs, const NT & rhs)
 {
     return (lhs() >= rhs);
 }
 
-template <int U1, int U2, int U3, int U4>
-bool operator>=(const NT & lhs, const Units<U1, U2, U3, U4> & rhs)
+template <int U1, int U2, int U3, int U4, int U5>
+bool operator>=(const NT & lhs, const Units<U1, U2, U3, U4, U5> & rhs)
 {
     return (lhs >= rhs());
 }
 
 
-template <int U1, int U2, int U3, int U4>
-bool operator<(const Units<U1, U2, U3, U4> & lhs, const Units<U1, U2, U3, U4> & rhs)
+template <int U1, int U2, int U3, int U4, int U5>
+bool operator<(const Units<U1, U2, U3, U4, U5> & lhs, const Units<U1, U2, U3, U4, U5> & rhs)
 {
     return lhs() < rhs();
 }
 
-template <int U1, int U2, int U3, int U4>
-bool operator<(const Units<U1, U2, U3, U4> & lhs, const NT & rhs)
+template <int U1, int U2, int U3, int U4, int U5>
+bool operator<(const Units<U1, U2, U3, U4, U5> & lhs, const NT & rhs)
 {
     return (lhs() < rhs);
 }
 
-template <int U1, int U2, int U3, int U4>
-bool operator<(const NT & lhs, const Units<U1, U2, U3, U4> & rhs)
+template <int U1, int U2, int U3, int U4, int U5>
+bool operator<(const NT & lhs, const Units<U1, U2, U3, U4, U5> & rhs)
 {
     return (lhs < rhs());
 }
 
 
-template <int U1, int U2, int U3, int U4>
-bool operator>(const Units<U1, U2, U3, U4> & lhs, const Units<U1, U2, U3, U4> & rhs)
+template <int U1, int U2, int U3, int U4, int U5>
+bool operator>(const Units<U1, U2, U3, U4, U5> & lhs, const Units<U1, U2, U3, U4, U5> & rhs)
 {
     return lhs() > rhs();
 }
 
-template <int U1, int U2, int U3, int U4>
-bool operator>(const Units<U1, U2, U3, U4> & lhs, const NT & rhs)
+template <int U1, int U2, int U3, int U4, int U5>
+bool operator>(const Units<U1, U2, U3, U4, U5> & lhs, const NT & rhs)
 {
     return (lhs() > rhs);
 }
 
-template <int U1, int U2, int U3, int U4>
-bool operator>(const NT & lhs, const Units<U1, U2, U3, U4> & rhs)
+template <int U1, int U2, int U3, int U4, int U5>
+bool operator>(const NT & lhs, const Units<U1, U2, U3, U4, U5> & rhs)
 {
     return (lhs > rhs());
 }
 
-template <int U1, int U2, int U3, int U4>
-std::ostream & operator<<(std::ostream & s, const Units<U1, U2, U3, U4> & rhs)
+template <int U1, int U2, int U3, int U4, int U5>
+std::ostream & operator<<(std::ostream & s, const Units<U1, U2, U3, U4, U5> & rhs)
 {
-    return s << rhs() << rhs.dim();
+    return s << rhs();
 }
 
 // operator>> is not provided because the unit type can not be
@@ -272,14 +263,15 @@ std::ostream & operator<<(std::ostream & s, const Units<U1, U2, U3, U4> & rhs)
 // is in terms of the base type.
 
 // Typedefs for fundamental units
-typedef units::Units<1,0,0,0> Volume;
-typedef units::Units<0,1,0,0> Time;
-typedef units::Units<0,0,1,0> Temperature;
-typedef units::Units<0,0,0,1> LuminousIntensity;
+typedef units::Units<1,0,0,0,0> Volume;
+typedef units::Units<0,1,0,0,0> Time;
+typedef units::Units<0,0,1,0,0> Temperature;
+typedef units::Units<0,0,0,1,0> LuminousIntensity;
+typedef units::Units<0,0,0,0,1> Length;
 
 // Typedefs for derived units
-typedef units::Units<1,-1,0,0> Volumetric_Flow;
-typedef units::Units<0,-1,0,0> Frequency;
+typedef units::Units<1,-1,0,0,0> Volumetric_Flow;
+typedef units::Units<0,-1,0,0,0> Frequency;
 
 // Unit constants
 const Volume l = 1;
@@ -287,12 +279,15 @@ const Time s = 1;
 const Frequency Hz = 1;
 const Temperature K = 1;
 const LuminousIntensity cd = 1;
+const Length m = 1;
+const Length nm = 1e-9*m;
 const Temperature C = 274.15*K;
 const Volume ml = 1e-3*l;
 const Volume ul = 1e-6*l;
 const Volume nl = 1e-9*l;
 const Frequency kHz = 1e3*Hz;
 const Frequency MHz = 1e6*Hz;
+const Time ms = 1e-3*s;
 const Time minute = 60*s;
 const Time hr = 3600*s;
 
