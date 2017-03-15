@@ -40,7 +40,8 @@ HEADERS += \
     graph/Edge.h \
     graph/Graph.h \
     graph/Node.h \
-    utils/units.h
+    utils/units.h \
+    utils/multiunitswrapper.h
 
 SOURCES += \
     utils/AutoEnumerate.cpp \
