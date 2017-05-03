@@ -9,6 +9,7 @@
 #define SRC_UTIL_UTILS_H_
 
 #include <cstdio>
+#include <cmath>
 #include <cctype>
 #include <chrono>
 #include <string>
@@ -82,6 +83,21 @@ public:
     static size_t cantorParingFunction(int k1, int k2);
     static size_t cantorParingFunction(short int k1, short int k2);
     static size_t cantorParingFunction(long k1, long k2);
+
+    inline static bool isOdd(int num) {
+        return num % 2 == 1;
+    }
+
+    inline static bool isEven(int num) {
+        return num % 2 == 0;
+    }
+
+    inline static bool isWhole(double num) {
+        return num == std::floor(num);
+    }
+
+    static bool isPrime(int num);
+
 private:
 	Utils();
 	virtual ~Utils();

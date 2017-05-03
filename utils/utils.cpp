@@ -102,3 +102,28 @@ size_t Utils::cantorParingFunction(long k1, long k2) {
 size_t Utils::cantorParingFunction(short int k1, short int k2) {
     return (0.5 * (k1 + k2) * (k1 + k2 + 1)) + k2;
 }
+
+bool Utils::isPrime (int num)
+{
+    if (num <=1)
+        return false;
+    else if (num == 2)
+        return true;
+    else if (num % 2 == 0)
+        return false;
+    else
+    {
+        bool prime = true;
+        int divisor = 3;
+        double num_d = static_cast<double>(num);
+        int upperLimit = static_cast<int>(sqrt(num_d) +1);
+
+        while (divisor <= upperLimit)
+        {
+            if (num % divisor == 0)
+                prime = false;
+            divisor +=2;
+        }
+        return prime;
+    }
+}
