@@ -33,7 +33,7 @@ public:
 	 * Return the actual value
 	 * @return the actual value
 	 */
-	int getValue();
+    int getValue() const;
 	/**
 	 * Return the actual value and advance the sequence
 	 * @return the actual value

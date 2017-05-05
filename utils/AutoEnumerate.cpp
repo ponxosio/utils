@@ -17,7 +17,7 @@ AutoEnumerate::AutoEnumerate(const AutoEnumerate & e) {
 
 AutoEnumerate::~AutoEnumerate() {}
 
-int AutoEnumerate::getValue() {
+int AutoEnumerate::getValue() const {
 	return actualValue;
 }
 

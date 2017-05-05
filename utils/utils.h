@@ -21,6 +21,7 @@
 #include <vector>
 #include <tuple>
 
+#include "utils/units.h"
 #include "utils/utils_global.h"
 
 using namespace std;
@@ -97,6 +98,42 @@ public:
     }
 
     static bool isPrime(int num);
+
+    inline static double toDefaultUnits(units::Time timeValue) {
+        return timeValue.to(units::s);
+    }
+
+    inline static double toDefaultUnits(units::Temperature tempValue) {
+        return tempValue.to(units::K);
+    }
+
+    inline static double toDefaultUnits(units::Volume volValue) {
+        return volValue.to(units::l);
+    }
+
+    inline static double toDefaultUnits(units::Length lenValue) {
+        return lenValue.to(units::m);
+    }
+
+    inline static double toDefaultUnits(units::LuminousIntensity luValue) {
+        return luValue.to(units::cd);
+    }
+
+    inline static double toDefaultUnits(units::ElectricPotential elValue) {
+        return elValue.to(units::V);
+    }
+
+    inline static double toDefaultUnits(units::Volumetric_Flow floValue) {
+        return floValue.to(units::l / units::s);
+    }
+
+    inline static double toDefaultUnits(units::Frequency freValue) {
+        return freValue.to(units::Hz);
+    }
+
+    inline static double toDefaultUnits(units::ElectricField fiValue) {
+        return fiValue.to(units::V / units::m);
+    }
 
 private:
 	Utils();
