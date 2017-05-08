@@ -273,7 +273,7 @@ typedef units::Units<0,0,0,0,0,1> ElectricPotential;
 // Typedefs for derived units
 typedef units::Units<1,-1,0,0,0,0> Volumetric_Flow;
 typedef units::Units<0,-1,0,0,0,0> Frequency;
-typedef units::Units<0,0,0,0,-1,1> E-Field;
+typedef units::Units<0,0,0,0,-1,1> ElectricField;
 
 // Unit constants
 const ElectricPotential V = 1;
