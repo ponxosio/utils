@@ -103,6 +103,15 @@ size_t Utils::cantorParingFunction(short int k1, short int k2) {
     return (0.5 * (k1 + k2) * (k1 + k2 + 1)) + k2;
 }
 
+double Utils::pround(double x, int precision)
+{
+    if (x == 0.)
+        return x;
+    int ex = std::floor(std::log10(std::abs(x))) - precision + 1;
+    double div = std::pow(10, ex);
+    return std::floor(x / div + 0.5) * div;
+}
+
 bool Utils::isPrime (int num)
 {
     if (num <=1)
