@@ -1,8 +1,10 @@
 #ifndef MULTIUNITSWRAPPER_H
 #define MULTIUNITSWRAPPER_H
 
+#include <memory>
 #include <stdexcept>
 
+#include "utils/electrophoresisresult.h"
 #include "utils/units.h"
 
 class MultiUnitsWrapper
@@ -16,10 +18,13 @@ public:
         temperature,
         luminous_intensity,
         volumetric_flow,
-        frequency
+        frequency,
+        electrophoresis_result
     } UnitsType;
 
-    MultiUnitsWrapper(){}
+    MultiUnitsWrapper(){
+        electrophoresisResult = NULL;
+    }
     virtual ~MultiUnitsWrapper(){}
 
     inline void setNoUnits(double value) {
@@ -53,6 +58,10 @@ public:
     inline void setFrequency(units::Frequency f) {
         unitsType = frequency;
         frequencyUnits = f;
+    }
+    inline void setElectrophoresisResult(std::shared_ptr<ElectrophoresisResult> er) {
+        unitsType = electrophoresis_result;
+        electrophoresisResult = er;
     }
 
     inline double getNoUnits() throw(std::invalid_argument) {
@@ -112,6 +121,14 @@ public:
         }
     }
 
+    inline std::shared_ptr<ElectrophoresisResult> getFrequency() throw(std::invalid_argument) {
+        if (unitsType == electrophoresis_result) {
+            return electrophoresisResult;
+        } else {
+            throw(std::invalid_argument("this unitswrapper does not wrap ElectrophoresisResults untis"));
+        }
+    }
+
 protected:
     UnitsType unitsType;
 
@@ -122,6 +139,8 @@ protected:
     units::LuminousIntensity luminosityIntensityUnits;
     units::Volumetric_Flow volumetricFlowUnits;
     units::Frequency frequencyUnits;
+
+    std::shared_ptr<ElectrophoresisResult> electrophoresisResult;
 };
 
 #endif // MULTIUNITSWRAPPER_H

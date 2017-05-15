@@ -41,7 +41,8 @@ HEADERS += \
     graph/Graph.h \
     graph/Node.h \
     utils/units.h \
-    utils/multiunitswrapper.h
+    utils/multiunitswrapper.h \
+    utils/electrophoresisresult.h
 
 SOURCES += \
     utils/AutoEnumerate.cpp \
