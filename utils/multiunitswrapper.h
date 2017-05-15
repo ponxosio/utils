@@ -121,7 +121,7 @@ public:
         }
     }
 
-    inline std::shared_ptr<ElectrophoresisResult> getFrequency() throw(std::invalid_argument) {
+    inline std::shared_ptr<ElectrophoresisResult> getElectrophoresisResult() throw(std::invalid_argument) {
         if (unitsType == electrophoresis_result) {
             return electrophoresisResult;
         } else {
