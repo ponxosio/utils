@@ -20,7 +20,8 @@ CONFIG(release, debug|release) {
     CONFIG += release
 }
 
-QT       -= gui
+QT -= gui
+QT += serialport
 
 TARGET = utils
 TEMPLATE = lib
@@ -41,12 +42,18 @@ HEADERS += \
     graph/Graph.h \
     graph/Node.h \
     utils/units.h \
-    utils/multiunitswrapper.h
+    utils/multiunitswrapper.h \
+    utils/electrophoresisresult.h \
+    communications/CommandSender.h \
+    communications/FileSender.h \
+    communications/SerialSender.h
 
 SOURCES += \
     utils/AutoEnumerate.cpp \
     utils/sequence.cpp \
-    utils/utils.cpp
+    utils/utils.cpp \
+    communications/FileSender.cpp \
+    communications/SerialSender.cpp
 
 debug {
     QMAKE_POST_LINK=X:\utils\utils\setDLL.bat $$shell_path($$OUT_PWD/debug) debug

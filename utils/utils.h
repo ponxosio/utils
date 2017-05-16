@@ -85,6 +85,8 @@ public:
     static size_t cantorParingFunction(short int k1, short int k2);
     static size_t cantorParingFunction(long k1, long k2);
 
+    static double pround(double x, int precision);
+
     inline static bool isOdd(int num) {
         return num % 2 == 1;
     }
