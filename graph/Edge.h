@@ -60,7 +60,7 @@ public:
 	 * @param e other edge to compare
 	 * @return true if the edges are equal, false otherwise
 	 */
-	inline virtual bool equals (const Edge& e) {
+    inline virtual bool equals (const Edge& e) const{
 		return ((e.idSource == this->idSource) && (e.idTarget == this->idTarget));
 	}
 
