@@ -46,7 +46,8 @@ HEADERS += \
     utils/electrophoresisresult.h \
     communications/CommandSender.h \
     communications/FileSender.h \
-    communications/SerialSender.h
+    communications/SerialSender.h \
+    utils/memento.h
 
 SOURCES += \
     utils/AutoEnumerate.cpp \
