@@ -47,14 +47,18 @@ HEADERS += \
     communications/CommandSender.h \
     communications/FileSender.h \
     communications/SerialSender.h \
-    utils/memento.h
+    utils/memento.h \
+    utils/machineflow.h \
+    utils/machineflowstringadapter.h
 
 SOURCES += \
     utils/AutoEnumerate.cpp \
     utils/sequence.cpp \
     utils/utils.cpp \
     communications/FileSender.cpp \
-    communications/SerialSender.cpp
+    communications/SerialSender.cpp \
+    utils/machineflow.cpp \
+    utils/machineflowstringadapter.cpp
 
 debug {
     QMAKE_POST_LINK=X:\utils\utils\setDLL.bat $$shell_path($$OUT_PWD/debug) debug
