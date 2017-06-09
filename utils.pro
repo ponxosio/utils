@@ -49,7 +49,8 @@ HEADERS += \
     communications/SerialSender.h \
     utils/memento.h \
     utils/machineflow.h \
-    utils/machineflowstringadapter.h
+    utils/machineflowstringadapter.h \
+    utils/utilsjson.h
 
 SOURCES += \
     utils/AutoEnumerate.cpp \
@@ -58,7 +59,8 @@ SOURCES += \
     communications/FileSender.cpp \
     communications/SerialSender.cpp \
     utils/machineflow.cpp \
-    utils/machineflowstringadapter.cpp
+    utils/machineflowstringadapter.cpp \
+    utils/utilsjson.cpp
 
 debug {
     QMAKE_POST_LINK=X:\utils\utils\setDLL.bat $$shell_path($$OUT_PWD/debug) debug
@@ -69,4 +71,5 @@ debug {
 }
 
 INCLUDEPATH += X:\libraries\cereal-1.2.2\include
+INCLUDEPATH += X:\libraries\json-2.1.1\src
 

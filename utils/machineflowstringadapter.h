@@ -22,6 +22,8 @@ public:
     typedef std::vector<PathRateTuple> FlowsVector;
 
     static bool flowsVectorEquals(const FlowsVector & f1, const FlowsVector & f2);
+    static std::string flowsVectorToString(const MachineFlowStringAdapter::FlowsVector & flowInTime);
+    static std::string flowsVectorToString(const std::vector<MachineFlowStringAdapter::FlowsVector> & flowInTime);
 
     MachineFlowStringAdapter();
     MachineFlowStringAdapter(const MachineFlowStringAdapter & mfsa);

@@ -8,6 +8,32 @@ bool MachineFlowStringAdapter::flowsVectorEquals(const FlowsVector & f1, const F
     return equals;
 }
 
+std::string MachineFlowStringAdapter::flowsVectorToString(const MachineFlowStringAdapter::FlowsVector & flowInTime) {
+    std::stringstream stream;
+    stream << "[";
+    for(const auto & flowPair : flowInTime) {
+        stream << "{[";
+        for(std::string cStep : std::get<0>(flowPair)) {
+            stream << cStep << ",";
+        }
+        stream <<  "],";
+        stream << std::get<1>(flowPair).to(units::ml/units::hr) << " ml/hr";
+        stream << "},";
+    }
+    stream << "]";
+    return stream.str();
+}
+
+std::string MachineFlowStringAdapter::flowsVectorToString(const std::vector<MachineFlowStringAdapter::FlowsVector> & flowInTime) {
+    std::stringstream stream;
+    stream << "[";
+    for(const auto & elem: flowInTime) {
+        stream << flowsVectorToString(elem);
+    }
+    stream << "]";
+    return stream.str();
+}
+
 MachineFlowStringAdapter::MachineFlowStringAdapter() {
 
 }
