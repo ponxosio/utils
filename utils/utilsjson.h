@@ -48,6 +48,7 @@ public:
     static units::Length getLengthUnits(const std::string & unitsStr) throw(std::invalid_argument);
     static units::Time getTimeUnits(const std::string & unitsStr) throw(std::invalid_argument);
     static units::ElectricPotential getElectricPotentialUnits(const std::string & unitsStr) throw(std::invalid_argument);
+    static units::LuminousIntensity getLuminousIntensityUnits(const std::string & unitsStr) throw(std::invalid_argument);
 };
 
 #endif // UTILSJSON_H

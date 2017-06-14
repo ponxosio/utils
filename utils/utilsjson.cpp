@@ -105,3 +105,13 @@ units::ElectricPotential UtilsJSON::getElectricPotentialUnits(const std::string 
     }
     return ep;
 }
+
+units::LuminousIntensity UtilsJSON::getLuminousIntensityUnits(const std::string & unitsStr) throw(std::invalid_argument) {
+    units::LuminousIntensity ep;
+    if (unitsStr.compare(UNITS_LUMINOUS_CD) == 0) {
+        ep = units::cd;
+    } else {
+        throw(std::invalid_argument("Unknow luminous intensity units \"" + unitsStr + "\""));
+    }
+    return ep;
+}
