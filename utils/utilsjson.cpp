@@ -84,6 +84,8 @@ units::Time UtilsJSON::getTimeUnits(const std::string & unitsStr) throw(std::inv
     units::Time time;
     if (unitsStr.compare(UNITS_TIME_HR) == 0) {
         time = units::hr;
+    } else if (unitsStr.compare(UNITS_TIME_H) == 0) {
+        time = units::hr;
     } else if (unitsStr.compare(UNITS_TIME_MINUTE) == 0) {
         time = units::minute;
     } else if (unitsStr.compare(UNITS_TIME_MS) == 0) {

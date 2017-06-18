@@ -18,6 +18,7 @@
 #define UNITS_TIME_S "s"
 #define UNITS_TIME_MINUTE "minute"
 #define UNITS_TIME_HR "hr"
+#define UNITS_TIME_H "h"
 
 #define UNITS_LUMINOUS_CD "cd"
 
