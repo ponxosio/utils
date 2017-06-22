@@ -11,14 +11,11 @@
 
 #include "utils/memento.h"
 #include "utils/units.h"
-#include "utils/Utils.h"
 
 #include "utils/utils_global.h"
 
 class MACHINE_FLOW_EXPORT MachineFlow
 {
-    friend class MachineFlowStringAdapter;
-
 public:
     typedef std::tuple<std::deque<short int>,units::Volumetric_Flow> PathRateTuple;
     typedef std::vector<PathRateTuple> FlowsVector;
@@ -46,6 +43,8 @@ public:
         this->restoreState(memento.getState());
     }
 
+    void restoreState(const MachineFlow & state);
+
 protected:
     FlowsVector previous;
     FlowsVector actual;
@@ -54,8 +53,6 @@ protected:
     bool areCompatible(const std::deque<short int> & queue1, const std::deque<short int> & queue2);
     void removeZeroFlows(FlowsVector & flows);
     void mergeStacks();
-
-    void restoreState(const MachineFlow & state);
 };
 
 #endif // MACHINEFLOW_H
