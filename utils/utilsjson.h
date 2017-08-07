@@ -2,6 +2,7 @@
 #define UTILSJSON_H
 
 #define UNITS_VOLUME_L "l"
+#define UNITS_VOLUME_L2 "L"
 #define UNITS_VOLUME_ML "ml"
 #define UNITS_VOLUME_UL "ul"
 #define UNITS_VOLUME_NL "nl"
