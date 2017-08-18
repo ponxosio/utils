@@ -26,6 +26,7 @@ FileSender::~FileSender() {
 unsigned long FileSender::sendString(const char* str) {
     if (outFile.is_open()) {
         outFile << str << "\n";
+        outFile.flush();
 	} else {
 		throw(std::ios_base::failure("the connection must be opened first"));
 	}
@@ -69,7 +70,8 @@ std::string FileSender::readUntil(char endCharacter)
 
 void FileSender::disconnect() {
 	if (outFile.is_open()) {
-		outFile.close();
+        outFile.flush();
+        outFile.close();
 	}
 	if (inFile.is_open()) {
 		inFile.close();

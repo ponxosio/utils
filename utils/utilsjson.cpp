@@ -28,6 +28,8 @@ units::Volume UtilsJSON::getVolumeUnits(const std::string & unitsStr) throw(std:
     units::Volume vol;
     if (unitsStr.compare(UNITS_VOLUME_L) == 0) {
         vol = units::l;
+    } else if (unitsStr.compare(UNITS_VOLUME_L2) == 0) {
+        vol = units::l;
     } else if (unitsStr.compare(UNITS_VOLUME_ML) == 0) {
         vol = units::ml;
     } else if (unitsStr.compare(UNITS_VOLUME_UL) == 0) {
