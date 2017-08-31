@@ -20,6 +20,7 @@
 
 #include <vector>
 #include <tuple>
+#include <unordered_map>
 
 #include "utils/units.h"
 #include "utils/utils_global.h"
@@ -49,6 +50,15 @@ public:
 	 * return the current timestamp in Milliseconds since epoch time
 	 */
 	static long getCurrentTimeMilis();
+
+    template<class Key, class T>
+    static std::vector<T> getAllValuesFromMap(const std::unordered_map<Key, T> & map) {
+        std::vector<T> values;
+        for (const auto & it : map) {
+            values.push_back(it.second);
+        }
+        return values;
+    }
 
 	/**
 	 * Checks if an object can be cast to a given subtype,
