@@ -46,8 +46,8 @@ units::Temperature UtilsJSON::getTemperatureUnits(const std::string & unitsStr) 
     units::Temperature temp;
     if (unitsStr.compare(UNITS_TEMPERATURE_C) == 0) {
         temp = units::C;
-    } else if (unitsStr.compare(UNITS_TEMPERATURE_K) == 0) {
-        temp = units::K;
+    /*} else if (unitsStr.compare(UNITS_TEMPERATURE_K) == 0) {
+        temp = units::K;*/
     } else {
         throw(std::invalid_argument("Unknow Temperature units \"" + unitsStr + "\""));
     }

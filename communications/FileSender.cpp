@@ -27,6 +27,7 @@ FileSender::~FileSender() {
 
 unsigned long FileSender::sendString(const char* str) {
     if (outFile.is_open()) {
+        semaphore.lock();
 
         std::string timeStamp = "";
         if (timestampManager != NULL) {
@@ -38,6 +39,8 @@ unsigned long FileSender::sendString(const char* str) {
 
         outFile << timeStamp << ". " << str << "\n";
         outFile.flush();
+
+        semaphore.unlock();
 	} else {
 		throw(std::ios_base::failure("the connection must be opened first"));
 	}
@@ -48,10 +51,11 @@ std::string FileSender::receiveString() throw (std::ios_base::failure) {
 	return readUntil('\n');
 }
 
-std::string FileSender::readUntil(char endCharacter)
-		throw (std::ios_base::failure) {
-	std::string line;
+std::string FileSender::readUntil(char endCharacter) throw (std::ios_base::failure) {
+    std::string line;
 	if (inFile.is_open()) {
+        semaphore.lock();
+
 		bool finded = false;
 		char c;
 
@@ -73,6 +77,8 @@ std::string FileSender::readUntil(char endCharacter)
 				}
 			}
 		} while (!finded);
+
+        semaphore.unlock();
 	} else {
 		throw(std::ios_base::failure("the connection must be opened first"));
 	}

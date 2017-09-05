@@ -42,10 +42,15 @@ unsigned long SerialSender::sendString(const char * str) {
 		throw(std::ios_base::failure("connection has not been established yet"));
 	}
 
+    semaphore.lock();
+
     qint64 bytesSended =  handler->write(str);
     if (!handler->waitForBytesWritten(waitMs)) {
         bytesSended = -1;
     }
+
+    semaphore.unlock();
+
     return bytesSended;
 }
 
@@ -53,6 +58,8 @@ std::string SerialSender::receiveString() throw (std::ios_base::failure) {
     if (handler->openMode() != QIODevice::ReadWrite) {
         throw(std::ios_base::failure("connection has not been established yet"));
     }
+
+    semaphore.lock();
 
     bool timeout = false;
     std::string strRead;
@@ -65,6 +72,8 @@ std::string SerialSender::receiveString() throw (std::ios_base::failure) {
         numRead  = handler->read(buffer, 50);
         timeout = !handler->waitForReadyRead(waitMs);
     } while(numRead > 0 && !timeout);
+
+    semaphore.unlock();
 
     if (timeout) {
         throw (std::ios_base::failure("time out while connection"));

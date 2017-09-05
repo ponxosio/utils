@@ -10,6 +10,7 @@
 
 #include <string>
 #include <ios>
+#include <mutex>
 
 //Qt
 #include <QtSerialPort/QSerialPort>
@@ -99,6 +100,8 @@ protected:
     QSerialPort::Parity parity;
 
     int waitMs;
+
+    std::mutex semaphore;
 };
 
 template<class Archive>

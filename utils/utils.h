@@ -116,7 +116,7 @@ public:
     }
 
     inline static double toDefaultUnits(units::Temperature tempValue) {
-        return tempValue.to(units::K);
+        return tempValue.to(units::C);
     }
 
     inline static double toDefaultUnits(units::Volume volValue) {

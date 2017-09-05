@@ -13,6 +13,7 @@
 #include <ios>
 #include <cfloat>
 #include <string>
+#include <mutex>
 
 #include <QTime>
 
@@ -50,6 +51,8 @@ protected:
 
 	std::ofstream outFile;
 	std::ifstream inFile;
+
+    std::mutex semaphore;
 };
 
 template<class Archive>
