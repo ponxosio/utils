@@ -12,11 +12,13 @@ FileSender::FileSender() {
     this->outputName = "";
 }
 
-FileSender::FileSender(const std::string& outputName, const std::string& inputName) :
+FileSender::FileSender(const std::string& outputName, const std::string& inputName, std::shared_ptr<TimeStampSimulator> timestampManager) :
 	CommandSender()
 {
 	this->inputName = inputName;
 	this->outputName = outputName;
+
+    this->timestampManager = timestampManager;
 }
 
 FileSender::~FileSender() {
@@ -25,7 +27,16 @@ FileSender::~FileSender() {
 
 unsigned long FileSender::sendString(const char* str) {
     if (outFile.is_open()) {
-        outFile << str << "\n";
+
+        std::string timeStamp = "";
+        if (timestampManager != NULL) {
+            timeStamp = timestampManager->getTimeStamp();
+        } else {
+            QDateTime now = QDateTime::currentDateTime();
+            timeStamp = now.toString("dd hh:mm:ss").toStdString();
+        }
+
+        outFile << timeStamp << ". " << str << "\n";
         outFile.flush();
 	} else {
 		throw(std::ios_base::failure("the connection must be opened first"));
@@ -90,4 +101,8 @@ void FileSender::connect() throw (std::ios_base::failure) {
 		throw(std::ios_base::failure(
 				"the file " + inputName + " is already opened"));
 	}
+
+    if (timestampManager != NULL) {
+        timestampManager->resetStartTime();
+    }
 }

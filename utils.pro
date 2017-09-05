@@ -50,7 +50,8 @@ HEADERS += \
     utils/memento.h \
     utils/machineflow.h \
     utils/machineflowstringadapter.h \
-    utils/utilsjson.h
+    utils/utilsjson.h \
+    utils/timestampsimulator.h
 
 SOURCES += \
     utils/AutoEnumerate.cpp \
@@ -60,7 +61,8 @@ SOURCES += \
     communications/SerialSender.cpp \
     utils/machineflow.cpp \
     utils/machineflowstringadapter.cpp \
-    utils/utilsjson.cpp
+    utils/utilsjson.cpp \
+    utils/timestampsimulator.cpp
 
 debug {
     QMAKE_POST_LINK=X:\utils\utils\setDLL.bat $$shell_path($$OUT_PWD/debug) debug

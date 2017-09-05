@@ -14,6 +14,8 @@
 #include <cfloat>
 #include <string>
 
+#include <QTime>
+
 #include "CommandSender.h"
 
 //cereal
@@ -21,12 +23,13 @@
 #include <cereal/types/polymorphic.hpp>
 #include <cereal/types/string.hpp>
 
+#include "utils/timestampsimulator.h"
 #include "utils/utils_global.h"
 
 class FILESENDER_EXPORT FileSender: public CommandSender {
 public:
     FileSender();
-    FileSender(const std::string & outputName, const std::string & inputName);
+    FileSender(const std::string & outputName, const std::string & inputName, std::shared_ptr<TimeStampSimulator> timestampManager = NULL);
 	virtual ~FileSender();
 
     virtual unsigned long sendString(const char* str);
@@ -40,6 +43,8 @@ public:
 	template<class Archive>
 	void serialize(Archive & ar, std::uint32_t const version);
 protected:
+    std::shared_ptr<TimeStampSimulator> timestampManager;
+
 	std::string outputName;
 	std::string inputName;
 
