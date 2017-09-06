@@ -60,6 +60,15 @@ public:
         return values;
     }
 
+    template<class Key, class T>
+    static std::unordered_map<T, Key> reverseMap(const std::unordered_map<Key, T> & map) {
+        std::unordered_map<T, Key> values;
+        for (const auto & it : map) {
+            values.insert(std::make_pair(it.second, it.first));
+        }
+        return values;
+    }
+
 	/**
 	 * Checks if an object can be cast to a given subtype,
 	 *
